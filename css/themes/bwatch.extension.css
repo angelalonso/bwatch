@@ -1,0 +1,18 @@
+@font-face{
+    font-family: "Quando";
+    src: url('../../deco/Quando-Regular.ttf'),
+    url('../../deco/Quando-Regular.ttf'); /* IE */
+}
+
+#config_btn{
+	align: left;
+	height: 32px;
+	line-height: 32px;
+	color: #777;
+}
+
+#creative_commons{
+	height: 40px;
+	line-height: 40px;
+	color: #777;
+}
