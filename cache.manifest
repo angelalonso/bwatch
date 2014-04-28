@@ -1,2 +1,10 @@
 CACHE MANIFEST
 # Revision 1
+
+NETWORK:
+*
+CACHE:
+index.html
+data/Calendar.csv
+js/csv_handler.js
+js/external/csvjson.js
