@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html manifest="cache.manifest">
 	<head>
-		<title>b-guard</title>
+		<title>b.watch</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/themes/bwatch.min.css" />
 		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
@@ -14,17 +14,21 @@
 	<body>
 
 		<script>
-
-			function supports_html5_storage() {
+// http://diveintohtml5.info/storage.html
+/*			function supports_html5_storage() {
 			  try {
-			  	alert("Hola Coni!");
+			  	alert(FileReader.readAsText(localStorage.getItem('helloWorld.txt')));
 			    return 'localStorage' in window && window['localStorage'] !== null;
 			  } catch (e) {
 			  	alert("no");
 			    return false;
 			  }
 			}
-			supports_html5_storage();
+*/
+//
+		
+
+//			
 			csv_file = 'data/Calendar.csv';
 			/* see http://docs.phonegap.com/en/2.1.0/cordova_file_file.md.html#File */
 			$( document ).ready(function() {
@@ -52,7 +56,7 @@
 	<div data-role="page">
 		<div data-role="header" data-theme="a">
 			<h1><img src="deco/b-guard.png"></h1>
-			<a href="index.html" data-icon="gear" class="ui-btn-right" id="config_btn" >Config</a>
+			<a href="config.html" data-icon="gear" class="ui-btn-right" id="config_btn" >Config</a>
 
 		</div><!-- /header -->
 		
