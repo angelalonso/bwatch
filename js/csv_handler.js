@@ -13,7 +13,7 @@ function processCSV2ObjectArray(allText){
     //* Storing the headers
     DataObj.headers = [];
     var allTextLines = allText.split(/\r\n|\n/);
-    alert("allTextLines");
+    alert(allTextLines);
     headers_raw = allTextLines[0].split(',');
     for (var j=0; j < headers_raw.length; j++){
         headers_procsd = headers_raw[j].replace(" ","_","g");
