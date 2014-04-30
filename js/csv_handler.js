@@ -29,7 +29,7 @@ function processCSV2ObjectArray(allText){
         }
         DataObj.Data.push(tarr);
     }
-    alert(DataObj.Data[0].Subject);
+    alert(DataObj.Data[0].Subject + "ojo!");
     return DataObj;
 }
 
