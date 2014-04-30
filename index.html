@@ -46,7 +46,6 @@
 			loadCSV().done(function(data) {
 				alert("before processed");
 				dataArray = processCSV2ObjectArray(data);
-				alert("after processed");
 				document.getElementById('nexttest').innerHTML = "Next Test: " + searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date;
 				
 			}).fail(function() {

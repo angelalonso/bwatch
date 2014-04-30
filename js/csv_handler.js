@@ -10,6 +10,7 @@ function processCSV2ObjectArray(allText){
     */
 
     var DataObj = new Object();
+    alert("CSV2Boject found");
     //* Storing the headers
     DataObj.headers = [];
     var allTextLines = allText.split(/\r\n|\n/);
