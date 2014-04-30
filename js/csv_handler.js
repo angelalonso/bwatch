@@ -18,18 +18,22 @@ function processCSV2ObjectArray(allText){
     for (var j=0; j < headers_raw.length; j++){
         headers_procsd = headers_raw[j].replace(" ","_","g");
         DataObj.headers.push(headers_procsd);
+        alert("in the first for");      
+
     }
     //* Storing the rest
     DataObj.Data = [];
+    alert("alltext length" + allTextLines.length);
     for (var k=1; k < allTextLines.length; k++) {
         var data = allTextLines[k].split(',');
         var tarr = new Object();
         for (var l=0; l < DataObj.headers.length; l++){
             eval("tarr." + DataObj.headers[l] + "='" + data[l] + "'");
+            alert("in the second for");
         }
         DataObj.Data.push(tarr);
     }
-    alert(DataObj.Data[0].Subject + "ojo!");
+
     return DataObj;
 }
 
