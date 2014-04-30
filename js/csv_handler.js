@@ -10,10 +10,10 @@ function processCSV2ObjectArray(allText){
     */
 
     var DataObj = new Object();
-    alert("CSV2Boject found");
     //* Storing the headers
     DataObj.headers = [];
     var allTextLines = allText.split(/\r\n|\n/);
+    alert("allTextLines");
     headers_raw = allTextLines[0].split(',');
     for (var j=0; j < headers_raw.length; j++){
         headers_procsd = headers_raw[j].replace(" ","_","g");
