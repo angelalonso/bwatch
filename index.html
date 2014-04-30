@@ -29,11 +29,10 @@
 		
 
 //			
-			csv_file = './data/Calendar.csv';
+			csv_file = 'data/Calendar.csv';
 			/* see http://docs.phonegap.com/en/2.1.0/cordova_file_file.md.html#File */
 			$( document ).ready(function() {
 				loadCSV();
-				alert("doc ready");
 			});
 
 			function loadCSV() {
@@ -45,10 +44,11 @@
 			}
 
 			loadCSV().done(function(data) {
+				alert("before processed");
 				dataArray = processCSV2ObjectArray(data);
-				
+				alert("after processed");
 				document.getElementById('nexttest').innerHTML = "Next Test: " + searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date;
-				alert("processed");
+				
 			}).fail(function() {
 			    alert("nothing found!");
 			});
