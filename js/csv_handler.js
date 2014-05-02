@@ -1,5 +1,5 @@
 
-function processCSV2ObjectArray(allText){
+function processCSV2ObjectArrayOLD(allText){
     /* How does the returned object look like?
     - Object.headers is an array of the headers found
     - Object.Data is an array of the data objects
@@ -18,19 +18,58 @@ function processCSV2ObjectArray(allText){
     for (var j=0; j < headers_raw.length; j++){
         headers_procsd = headers_raw[j].replace(" ","_","g");
         DataObj.headers.push(headers_procsd);
-        alert("in the first for");      
-
     }
     //* Storing the rest
     DataObj.Data = [];
-    alert("alltext length" + allTextLines.length);
     for (var k=1; k < allTextLines.length; k++) {
         var data = allTextLines[k].split(',');
         var tarr = new Object();
         for (var l=0; l < DataObj.headers.length; l++){
-            eval("tarr." + DataObj.headers[l] + "='" + data[l] + "'");
-            alert("in the second for");
+            
+
+            eval("tarr." + DataObj.headers[l] + "=\"" + data[l] + "\"");
         }
+        DataObj.Data.push(tarr);
+    }
+
+    return DataObj;
+}
+
+function processCSV2ObjectArray(allText){
+    /* How does the returned object look like?
+    - Object.headers is an array of the headers found <- TAKE THIS OUT IN THE FUTURE
+    - Object.Data is an array of the data objects
+        - Each one (eg. Object.Data[14]) has an attribute corresponding to a header
+        - The name of these attributes is the header, changing " " (spaces) with "_"
+        - This way, you can hardcode the attribute's name or use Object.headers
+
+    */
+
+    var DataObj = new Object();
+    //* Storing the headers
+    DataObj.headers = [];
+    var allTextLines = allText.split(/\r\n|\n/);
+
+    headers_raw = allTextLines[0].split(',');
+    for (var j=0; j < headers_raw.length; j++){
+        headers_procsd = headers_raw[j].replace(" ","_","g");
+        DataObj.headers.push(headers_procsd);
+    }
+    //* Storing the rest
+    DataObj.Data = [];
+    for (var k=1; k < allTextLines.length; k++) {
+        var data = allTextLines[k].split(',');
+        var tarr = new Object();
+        tarr.Subject = data[0];
+		tarr.Start_Date = data[1];
+		tarr.Start_Time = data[2];
+		tarr.End_Date = data[3];
+		tarr.End_Time = data[4];
+		tarr.All_Day_Event = data[5];
+		tarr.Description = data[6];
+		tarr.Location = data[7];
+		tarr.Private = data[8];
+        
         DataObj.Data.push(tarr);
     }
 
