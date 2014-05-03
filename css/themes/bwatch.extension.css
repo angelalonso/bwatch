@@ -16,7 +16,7 @@
 	color: #777;
 }
 
-#clock{
+#clock_main, #clock_config{
 	text-align: right;
 	padding-right: 10px;
 	font-size: 10px;

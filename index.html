@@ -8,37 +8,13 @@
         <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
         <link rel="stylesheet" href="css/themes/bwatch.extension.css" />
         <script src="js/jquery/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery.mobile.subpage.js"></script>
         <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
         <script src="js/csv_handler.js"></script>
+        <script src="js/pages.js"></script>
     </head>
     <body>
-        <script>
-            csv_file = 'data/Calendar.csv';
-            $( document ).ready(function() {
-                loadCSV();
-            });
 
-            function loadCSV() {
-                return $.ajax({
-                    type: "GET",
-                    url: csv_file,
-                    dataType: "text"
-                });
-            }
-
-            loadCSV().done(function(data) {
-                var aux = new Date();
-                var todayCSV = DateToCSVdate(aux);
-                var todayGUI = DateToGUI(aux);
-                dataArray = processCSV2ObjectArray(data);
-                document.getElementById('nextpill').innerHTML = "Today: " + searchObj(dataArray,"Start_Date",todayCSV).Data[0].Description;
-                document.getElementById('nexttest').innerHTML = "Next Test: " + CSVdateToGUI(searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date);
-                document.getElementById('clock').innerHTML = todayGUI;
-            }).fail(function() {
-                alert("nothing found!");
-            });
-
-        </script>
 
 <!-- MAIN -->
 
@@ -57,23 +33,25 @@
             <div data-role="footer" data-theme="a">
                 <div class="ui-grid-a">
                     <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
-                    <div class="ui-block-b"><div id="clock"></div></div>
+                    <div class="ui-block-b"><div id="clock_main"></div></div>
                 </div>
             </div><!-- /footer -->
         </div>
 
 <!-- CONFIG  http://api.jquerymobile.com/pagecontainer/ -->
         <div data-role="page" id="config">
+
             <div data-role="header" data-theme="a">
                 <h1><a href="#start" data-rel="back" data-transition="slide"><img src="deco/b-guard.png"></a></h1>
+            </div><!-- /header -->
 
             <div role="main" class="ui-content">
-                <a id="nextpill" href="#" data-role="button" data-icon="info"></a>    
+                <a id="nextpill2" href="#" data-role="button" data-icon="info"></a>    
             </div><!-- /content -->
             <div data-role="footer" data-theme="a">
                 <div class="ui-grid-a">
                     <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
-                    <div class="ui-block-b"><div id="clock"></div></div>
+                    <div class="ui-block-b"><div id="clock_config"></div></div>
                 </div>
             </div><!-- /footer -->
         </div>
