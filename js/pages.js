@@ -20,15 +20,16 @@ loadCSV().done(function(data) {
     document.getElementById('nexttest').innerHTML = "Next Test: " + CSVdateToGUI(searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date);
     document.getElementById('clock_main').innerHTML = todayGUI;
     document.getElementById('clock_config').innerHTML = todayGUI;
+    $("#start").on("swipeleft", function(e){
+    $.mobile.changePage("#config", {transition: "slide"});
+    });
+        
+    $("#config").on("swiperight", function(e){
+        $.mobile.changePage("#start", {transition: "slide", reverse: true});
+    }); 
+    
 }).fail(function() {
     alert("nothing found!");
 });
 
-$("#start").on("swipeleft", function(e){
-    $.mobile.changePage("#config", {transition: "slide"});
-});
-    
-$("#config").on("swiperight", function(e){
-    $.mobile.changePage("#start", {transition: "slide",
-                                   reverse: true});
-});    
+   
