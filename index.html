@@ -25,12 +25,8 @@
 			  }
 			}
 */
-//
-		
-
-//			
+			
 			csv_file = 'data/Calendar.csv';
-			/* see http://docs.phonegap.com/en/2.1.0/cordova_file_file.md.html#File */
 			$( document ).ready(function() {
 				loadCSV();
 			});
@@ -46,7 +42,8 @@
 			loadCSV().done(function(data) {
 				dataArray = processCSV2ObjectArray(data);
 				document.getElementById('nexttest').innerHTML = "Next Test: " + searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date;
-				
+				var today = new Date();
+				document.getElementById('clock').innerHTML = today;
 			}).fail(function() {
 			    alert("nothing found!");
 			});
@@ -61,12 +58,15 @@
 		</div><!-- /header -->
 		
 		<div data-role="content">
-			<a id="nexttest" href="#" data-role="button" data-icon="calendar"></a>
+			<a id="nexttake" href="#" data-role="button" data-icon="info"></a>
+			<a id="nexttest" href="#" data-role="button" data-icon="info"></a>
 		</div><!-- /content -->
 		
 		<div data-role="footer" data-theme="a">
 			<div class="ui-grid-b">
-				<div class="ui-block-b"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="info" >This Site supports Creative Commons</a></div>
+				<div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
+				<div class="ui-block-b"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" > </a></div>
+				<div class="ui-block-c"><a id="clock" href="https://creativecommons.org/" data-role="button" data-icon="clock"></a></div>
 			</div>
 		</div><!-- /footer -->
 	</div><!-- /page -->
