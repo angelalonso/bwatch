@@ -1,77 +1,81 @@
 <!DOCTYPE html>
 <html manifest="cache.manifest">
-	<head>
-		<title>b.watch</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/themes/bwatch.min.css" />
-		<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-		<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
-		<link rel="stylesheet" href="css/themes/bwatch.extension.css" />
-		<script src="js/jquery/jquery-1.10.2.min.js"></script>
-		<script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
-		<script src="js/csv_handler.js"></script>
-	</head>
-	<body>
+    <head>
+        <title>b.watch</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="css/themes/bwatch.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+        <link rel="stylesheet" href="css/themes/bwatch.extension.css" />
+        <script src="js/jquery/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
+        <script src="js/csv_handler.js"></script>
+    </head>
+    <body>
+        <script>
+            csv_file = 'data/Calendar.csv';
+            $( document ).ready(function() {
+                loadCSV();
+            });
 
-		<script>
-// http://diveintohtml5.info/storage.html
-/*			function supports_html5_storage() {
-			  try {
-			  	alert(FileReader.readAsText(localStorage.getItem('helloWorld.txt')));
-			    return 'localStorage' in window && window['localStorage'] !== null;
-			  } catch (e) {
-			  	alert("no");
-			    return false;
-			  }
-			}
-*/
-			
-			csv_file = 'data/Calendar.csv';
-			$( document ).ready(function() {
-				loadCSV();
-			});
+            function loadCSV() {
+                return $.ajax({
+                    type: "GET",
+                    url: csv_file,
+                    dataType: "text"
+                });
+            }
 
-			function loadCSV() {
-			    return $.ajax({
-			        type: "GET",
-			        url: csv_file,
-			        dataType: "text"
-			    });
-			}
+            loadCSV().done(function(data) {
+                var aux = new Date();
+                var todayCSV = DateToCSVdate(aux);
+                var todayGUI = DateToGUI(aux);
+                dataArray = processCSV2ObjectArray(data);
+                document.getElementById('nextpill').innerHTML = "Today: " + searchObj(dataArray,"Start_Date",todayCSV).Data[0].Description;
+                document.getElementById('nexttest').innerHTML = "Next Test: " + CSVdateToGUI(searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date);
+                document.getElementById('clock').innerHTML = todayGUI;
+            }).fail(function() {
+                alert("nothing found!");
+            });
 
-			loadCSV().done(function(data) {
-				var aux = new Date();
-				var todayCSV = DateToCSVdate(aux);
-				var todayGUI = DateToGUI(aux);
-				dataArray = processCSV2ObjectArray(data);
-				document.getElementById('nextpill').innerHTML = "Today: " + searchObj(dataArray,"Start_Date",todayCSV).Data[0].Description;
-				document.getElementById('nexttest').innerHTML = "Next Test: " + CSVdateToGUI(searchObj(dataArray,"Subject","Sintrom Test").Data[0].Start_Date);
-				document.getElementById('clock').innerHTML = todayGUI;
-			}).fail(function() {
-			    alert("nothing found!");
-			});
+        </script>
 
-		</script>
+<!-- MAIN -->
 
-	<div data-role="page">
-		<div data-role="header" data-theme="a">
-			<h1><img src="deco/b-guard.png"></h1>
-			<a href="config.html" data-icon="gear" class="ui-btn-right" id="config_btn" >Config</a>
+        <div data-role="page" id="start">
+            <div data-role="header" data-theme="a">
+                <h1><img src="deco/b-guard.png"></h1>
+                <a href="#config" data-icon="gear" data-transition="slide" class="ui-btn-right" id="config_btn" >Config</a>
 
-		</div><!-- /header -->
-		
-		<div data-role="content">
-			<a id="nextpill" href="#" data-role="button" data-icon="info"></a>
-			<a id="nexttest" href="#" data-role="button" data-icon="info"></a>
-		</div><!-- /content -->
-		
-		<div data-role="footer" data-theme="a">
-			<div class="ui-grid-b">
-				<div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
-				<div class="ui-block-b"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" > </a></div>
-				<div class="ui-block-c"><a id="clock" href="https://creativecommons.org/" data-role="button" data-icon="clock"></a></div>
-			</div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	</body>
+            </div><!-- /header -->
+            
+            <div role="main" class="ui-content">
+                <a id="nextpill" href="#" data-role="button" data-icon="info"></a>
+                <a id="nexttest" href="#" data-role="button" data-icon="info"></a>
+            </div><!-- /content -->
+            
+            <div data-role="footer" data-theme="a">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
+                    <div class="ui-block-b"><div id="clock"></div></div>
+                </div>
+            </div><!-- /footer -->
+        </div>
+
+<!-- CONFIG  http://api.jquerymobile.com/pagecontainer/ -->
+        <div data-role="page" id="config">
+            <div data-role="header" data-theme="a">
+                <h1><a href="#start" data-rel="back" data-transition="slide"><img src="deco/b-guard.png"></a></h1>
+
+            <div role="main" class="ui-content">
+                <a id="nextpill" href="#" data-role="button" data-icon="info"></a>    
+            </div><!-- /content -->
+            <div data-role="footer" data-theme="a">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
+                    <div class="ui-block-b"><div id="clock"></div></div>
+                </div>
+            </div><!-- /footer -->
+        </div>
+    </body>
 </html>
