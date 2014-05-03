@@ -76,25 +76,6 @@ function processCSV2ObjectArray(allText){
     return DataObj;
 }
 
-function DateToCSV(day){
-
-	var dd = day.getDate();
-	var mm = day.getMonth()+1; //January is 0!
-	var yyyy = day.getFullYear();
-	var yy = yyyy  % 100;
-
-	if(dd<10) {
-	    dd='0'+dd
-	} 
-
-	if(mm<10) {
-	    mm='0'+mm
-	} 
-
-	dayformatted = mm+'/'+yy+'/'+dd;
-	return dayformatted;
-
-}
 
 function searchObj(DataObj,column,text) {
 	var result = new Object();
@@ -110,4 +91,45 @@ function searchObj(DataObj,column,text) {
         }
 	} 
 	return result;
+}
+
+// Format functions
+
+// Date function to CSV-Stored date
+function DateToCSVdate(dateday){
+
+    var dd = dateday.getDate();
+    var mm = dateday.getMonth()+1; //January is 0!
+    var yyyy = dateday.getFullYear();
+    var yy = yyyy  % 100;
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    dayformatted = mm+'/'+yy+'/'+dd;
+    return dayformatted;
+
+}
+
+// Date function to something to show at the GUI
+function DateToGUI(dateday){
+	var daydivided = dateday.toDateString().split(' ');
+
+	dayformatted = daydivided[1] + " " + daydivided[2];
+	return dayformatted;
+}
+
+// CSV-Stored date to something to show at the GUI
+function CSVdateToGUI(dateday){
+	var datedaydivided = dateday.split('/');
+	var d = new Date("20"+datedaydivided[1], (datedaydivided[0]-1), datedaydivided[2]); 
+
+	ddivided = d.toDateString().split(' ');
+	dayformatted = ddivided[1] + " " + ddivided[2];
+	return dayformatted;
 }
