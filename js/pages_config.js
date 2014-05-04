@@ -1,6 +1,14 @@
 // CONFIG SITE SCRIPTING
 	// Getting the correct config file
 function get_configfile(){
+	// We'll use the oportunity to add functionality to the config site elements...
+	$( "#popupAppMode" ).on({
+        popupafterclose: function() {
+            document.getElementById('appmode').innerHTML = "App mode: " + document.getElementById('select-choice-min').value;
+        }
+    });
+
+    //..and now to the file itself!
 	configobj = new Object();
 	// Nothing configured? then use the one per default.
 	if (localStorage["config_file"] == undefined){
@@ -14,9 +22,9 @@ function get_configfile(){
 				//file exists
 				configobj = JSON && JSON.parse(data) || $.parseJSON(data);
 				localStorage["config_file"] = configobj.config_file;
-				localStorage["app_type"] = configobj.app_type;
+				localStorage["app_mode"] = configobj.app_mode;
 				document.getElementById('configfile').innerHTML = "Config file: " + configobj.config_file;
-				document.getElementById('apptype').innerHTML = "App type: " + configobj.app_type;
+				document.getElementById('appmode').innerHTML = "App mode: " + configobj.app_mode;
 			},
 			error: function()
 			{
@@ -24,7 +32,7 @@ function get_configfile(){
 				alert(configfile + " does not exist");
 				localStorage.removeItem("config_file");
 				document.getElementById('configfile').innerHTML = "Config file not found ";
-				document.getElementById('apptype').innerHTML = "App type not found ";
+				document.getElementById('appmode').innerHTML = "App mode not found ";
 			}
 		});
 		
@@ -38,9 +46,9 @@ function get_configfile(){
 				//file exists
 				configobj = JSON && JSON.parse(data) || $.parseJSON(data);
 				localStorage["config_file"] = configobj.config_file;
-				localStorage["app_type"] = configobj.app_type;
+				localStorage["app_mode"] = configobj.app_mode;
 				document.getElementById('configfile').innerHTML = "Config file: " + configobj.config_file;
-				document.getElementById('apptype').innerHTML = "App type: " + configobj.app_type;
+				document.getElementById('appmode').innerHTML = "App mode: " + configobj.app_mode;
 			},
 			error: function()
 			{
@@ -48,8 +56,9 @@ function get_configfile(){
 				alert(localStorage["config_file"] + " does not exist");
 				localStorage.removeItem("config_file");
 				document.getElementById('configfile').innerHTML = "Config file not found ";
-				document.getElementById('apptype').innerHTML = "App type not found ";
+				document.getElementById('appmode').innerHTML = "App mode not found ";
 			}
 		});
 	}
 }
+

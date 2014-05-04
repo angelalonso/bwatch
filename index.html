@@ -48,12 +48,21 @@
 
             <div role="main" class="ui-content">
                 <a id="configfile" href="#popupConfigfile" data-role="button" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info"></a>
-					<div data-role="popup" id="popupConfigfile">
-						<p>This is a completely basic popup, no options set.<p>
+					<div data-role="popup" id="popupConfigfile" class="ui-content">
+						<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                        <p>This is a completely basic popup, no options set.<p>
 					</div>
-				<a id="apptype" href="#popupAppType" data-role="button" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info"></a>
-					<div data-role="popup" id="popupAppType">
-						<p>This is a completely basic popup, no options set.<p>
+				<a id="appmode" href="#popupAppMode" data-role="button" data-rel="popup" data-position-to="window" data-transition="slidedown" data-icon="info"></a>
+					<div data-role="popup" id="popupAppMode" class="ui-content">
+                        <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                        <div class="ui-field-contain">
+    						<label for="select-choice-min" class="select">Choose the App mode:</label>
+                            <select name="select-choice-min" id="select-choice-min" data-mini="true">
+                            <option value="sintrom">Sintrom control</option>
+                            <option value="diabetes">Diabetes control</option>
+                            <option value="other">Other medicine control</option>
+                            </select>
+                        </div>
 					</div>
             </div><!-- /content -->
             <div data-role="footer" data-theme="a">
