@@ -4,7 +4,10 @@ function get_configfile(){
 	// We'll use the oportunity to add functionality to the config site elements...
 	$( "#popupAppMode" ).on({
         popupafterclose: function() {
-            document.getElementById('appmode').innerHTML = "App mode: " + document.getElementById('select-choice-min').value;
+        	newAppMode = document.getElementById('select-choice-min').value;
+            document.getElementById('appmode').innerHTML = "App mode: " + newAppMode;
+            localStorage["app_mode"] = newAppMode;
+            save_to_json(localStorage["app_mode"]);
         }
     });
 
@@ -62,3 +65,7 @@ function get_configfile(){
 	}
 }
 
+function save_to_json(test){
+	alert(test);
+
+}
