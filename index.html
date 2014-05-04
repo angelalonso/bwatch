@@ -11,7 +11,8 @@
         <script src="js/jquery.mobile.subpage.js"></script>
         <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
         <script src="js/csv_handler.js"></script>
-        <script src="js/pages.js"></script>
+        <script src="js/pages_main.js"></script>
+        <script src="js/pages_config.js"></script>
     </head>
     <body>
 
@@ -21,7 +22,7 @@
         <div data-role="page" id="start">
             <div data-role="header" data-theme="a">
                 <h1><img src="deco/b-guard.png"></h1>
-                <a href="#config" data-icon="gear" data-transition="slide" class="ui-btn-right" id="config_btn" >Config</a>
+                <a href="#config" data-icon="gear" data-transition="slide" data-direction="reverse" class="ui-btn-left" id="config_btn" >Config</a>
 
             </div><!-- /header -->
             
@@ -40,13 +41,20 @@
 
 <!-- CONFIG  http://api.jquerymobile.com/pagecontainer/ -->
         <div data-role="page" id="config">
-
             <div data-role="header" data-theme="a">
-                <h1><a href="#start" data-rel="back" data-transition="slide"><img src="deco/b-guard.png"></a></h1>
+              <!--  <h1><a href="#start" data-rel="back" data-transition="slide" ><img src="deco/b-guard.png"></a></h1> -->
+                <h1><a href="#start" data-transition="slide" ><img src="deco/b-guard.png"></a></h1>
             </div><!-- /header -->
 
             <div role="main" class="ui-content">
-                <a id="nextpill2" href="#" data-role="button" data-icon="info"></a>    
+                <a id="configfile" href="#popupConfigfile" data-role="button" data-rel="popup" data-transition="slidedown" data-icon="info"></a>
+					<div data-role="popup" id="popupConfigfile">
+						<p>This is a completely basic popup, no options set.<p>
+					</div>
+				<a id="apptype" href="#popupAppType" data-role="button" data-rel="popup" data-transition="slidedown" data-icon="info"></a>
+					<div data-role="popup" id="popupAppType">
+						<p>This is a completely basic popup, no options set.<p>
+					</div>
             </div><!-- /content -->
             <div data-role="footer" data-theme="a">
                 <div class="ui-grid-a">
