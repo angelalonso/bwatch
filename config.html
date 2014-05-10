@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+<head>
+	<title>bwatch > config</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    <link rel="stylesheet" href="css/themes/bwatch.min.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+    <link rel="stylesheet" href="css/themes/bwatch.extension.css" />
+
+    <script src="js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery/jquery.mobile.subpage.js"></script>
+    <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/localstorage.js"></script>
+    <script src="js/page_config.js"></script>
+
+</head>
+<body>
+<!--  LS stands for Local Storage here -->
+	<div class="ui-field-contain">
+		<label for="appmodechanger" class="select">Choose the App mode:</label>
+        <select name="appmodechanger" id="appmodechanger" data-mini="true">
+        <option value="sintrom">Sintrom control</option>
+        <option value="diabetes">Diabetes control</option>
+        <option value="other">Other medicine control</option>
+        </select>
+    </div>
+	<input type="file" name="filename" id="configfilechanger" />
+	<a id="checkCfgLS" href="#" data-role="button" data-icon="info">check config in local storage</a>
+	<a id="loadCfg2LS" href="#" data-role="button" data-icon="info">load config to local storage</a>
+	<a id="emptyCfgLS" href="#" data-role="button" data-icon="info">empty local storage from config entries</a>
+
+	<div id="configfile" ></div>
+	<div id="appmode" ></div>
+
+	<a id="saveCfgLS2File" href="#" data-role="button" data-icon="info">save to File</a>
+	<a href="" style="display: none">Download new Config file</a>
+
+<br><br>
+Next up: <br>
+
+
+unify file chooser and fileshow (no file? show, file? show a change button)
+Do the same with CSV
+
+</body>
+</html>
