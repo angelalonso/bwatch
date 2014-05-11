@@ -26,6 +26,14 @@ function load_start(){
     var todayCSV = DateToCALdate(aux);
     document.getElementById('clock_main').innerHTML = todayGUI;
     document.getElementById('clock_config').innerHTML = todayGUI;
-    document.getElementById('nextpill').innerHTML = "Today: " + jQuery.parseJSON(LSsearchincol("Start Date", todayCSV)[0])["Description"];
-    document.getElementById('nexttest').innerHTML = "Next Test: " + DateCALtoGUI(jQuery.parseJSON(LSsearchincol("Description","Test Blood")[0])["Start Date"]);
+    try { 
+		document.getElementById('nextpill').innerHTML = "Today: " + jQuery.parseJSON(LSsearchincol("Start Date", todayCSV)[0])["Description"]; 
+	} catch(e) {
+		document.getElementById('nextpill').innerHTML = "Today: Not defined";
+	}
+    try { 
+		document.getElementById('nexttest').innerHTML = "Next Test: " + DateCALtoGUI(jQuery.parseJSON(LSsearchincol("Description","Test Blood")[0])["Start Date"]);
+	} catch(e) {
+		document.getElementById('nexttest').innerHTML = "Next Test: Not defined";
+	}
 }

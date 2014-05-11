@@ -4,7 +4,7 @@
 function DateToGUI(dateday){
 	var daydivided = dateday.toDateString().split(' ');
 
-	dayformatted = daydivided[1] + " " + daydivided[2];
+	dayformatted = daydivided[1] + " " + daydivided[2] + " " + daydivided[3];
 	return dayformatted;
 }
 
@@ -36,8 +36,13 @@ function DateToCALdate(dateday){
 function DateCALtoGUI(dateday){
 	var datedaydivided = dateday.split('/');
 	var d = new Date("20"+datedaydivided[1], (datedaydivided[0]-1), datedaydivided[2]); 
-
 	ddivided = d.toDateString().split(' ');
-	dayformatted = ddivided[1] + " " + ddivided[2];
+	dayformatted = ddivided[1] + " " + ddivided[2] + " 20" + datedaydivided[1];
+	return dayformatted;
+}
+// Date function to "beautify" CSV-Stored date in an orderable way
+function DateCALtoListview(dateday){
+	var datedaydivided = dateday.split('/');
+	dayformatted = "20"+datedaydivided[1] + "/" + datedaydivided[0] + "/" + datedaydivided[2];
 	return dayformatted;
 }

@@ -14,6 +14,8 @@
     <script src="js/jquery/jquery.mobile.subpage.js"></script>
     <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
 
+	<script src="js/external/jquery.tinysort.min.js"></script>
+	
     <script src="js/formatter.js"></script>
     <script src="js/localstorage.js"></script>
     <script src="js/page_index.js"></script>
@@ -84,17 +86,19 @@
         </div><!-- /header -->
 
         <div role="main" class="ui-content">
-                <div id="datafile" ></div>
-                <input type="file" name="filename" id="datafilechanger" />
-       
-  
-                <a id="checkDataLS" href="#" data-role="button" data-icon="info">check Data in local storage</a>
-                <a id="loadData2LS" href="#" data-role="button" data-icon="info">load Data to local storage</a>
-                <a id="emptyDataLS" href="#" data-role="button" data-icon="info">empty local storage from Data entries</a>
 
-        <div id="lvdata" ></div>
-            <ul data-role="listview" id="lview">
-            </ul>
+			<div id="datafile" ></div>
+			<div data-role="fieldcontain">
+				<label for="name">Import file: </label>	
+				<input type="file" name="filename" id="datafilechanger" />
+			</div>
+			
+			<ul data-role="listview" id="lvdata" data-filter="true" >
+			</ul>
+
+			<a id="checkDataLS" href="#" data-role="button" data-icon="info">check Data in local storage</a>
+			<a id="emptyDataLS" href="#" data-role="button" data-icon="info">empty local storage from Data entries</a>
+
         </div><!-- /content -->
 
         <div data-role="footer" data-theme="a">

@@ -21,7 +21,7 @@ function loadconfig2storage(configfile_in) {
 			try {
 				configobj = JSON && JSON.parse(data) || $.parseJSON(data);
 			} catch(e) {
-				alert(e);
+				alert(e + data);
 			}
 			localStorage["cfg_configfile"] = configobj.cfg_configfile;
 			localStorage["cfg_appmode"] = configobj.cfg_appmode;
@@ -179,14 +179,18 @@ function LSsearchincol(column2search,value2search){
 		try {
 			value = jQuery.parseJSON(entry);
 		} catch(e) {
-			alert(e);
+			alert(e + entry);
 		}
-		columnvalue = value[column2search];
-		if ( columnvalue != undefined ) {
-			if (columnvalue.indexOf(value2search) > -1){
-				results.push(entry);
-			}
-		} 
+		try {
+			columnvalue = value[column2search];
+			if ( columnvalue != undefined ) {
+				if (columnvalue.indexOf(value2search) > -1){
+					results.push(entry);
+				}
+			} 
+		} catch(e) {
+			alert(e + value[column2search]);
+		}
 	} 
 	return results;
 }

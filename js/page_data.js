@@ -2,8 +2,10 @@ $(function() {
 
 	$( "#datafilechanger" ).on ({
 	    change: function() {
-	    	localStorage["cfg_datafile"] = document.getElementById('datafilechanger').value; 
-	    	updatecfghtml();
+	    	filename = document.getElementById('datafilechanger').value; 
+	    	/*localStorage["cfg_datafile"] = document.getElementById('datafilechanger').value; 
+	    	updatecfghtml();*/
+			loaddata2storage(filename);
 	    }
 	});
 	$( "#checkDataLS" ).on ({
@@ -11,17 +13,9 @@ $(function() {
 	    	document.getElementById('checkDataLS').innerHTML = LSdatacheck();
 	    }
 	});
-	$( "#loadData2LS" ).on ({
-	    click: function() {
-	    	// check what happens if no file is given
-	    	filename = 'Calendar.csv'; 
-	    	loaddata2storage(filename);
-	    }
-	});
 	$( "#emptyDataLS" ).on ({
 	    click: function() {
 	    	emptydatastored();
-	    	alert("deleting");
 	    	localStorage.clear();
 	    }
 	});
@@ -46,13 +40,15 @@ function updatedatahtml() {
 		if (key.indexOf("data_") > -1) {
 			try {
 				result = jQuery.parseJSON(value);
-				data_in = data_in + "<li><a data-role='button' data-theme='a' >"  + DateCALtoGUI(result["Start Date"]) + " - " + result["Description"] + "</a></li>";
+				data_in = data_in + "<li><a data-role='button' data-theme='a' >"  + DateCALtoListview(result["Start Date"]) + " - " + result["Description"] + "</a></li>";
 			} catch(e) {
-				alert(e);
+				alert(e + value);
 			}
 		}
 	} 
 	$("#lvdata").html(data_in).init();
-	  $("#lvdata").listview();
-	  $("#lvdata").listview('refresh');
+	$("#lvdata").listview();
+	/* http://tinysort.sjeiti.com/ */
+	$("ul#lvdata>li").tsort('',{order:"desc"});
+	$("#lvdata").listview('refresh');
 }
