@@ -42,7 +42,7 @@ function updatedatahtml() {
 				result = jQuery.parseJSON(value);
 				data_in = data_in + "<li><a data-role='button' data-theme='a' >"  + DateCALtoListview(result["Start Date"]) + " - " + result["Description"] + "</a></li>";
 			} catch(e) {
-				alert(e + value);
+				alert("updatedatahtml" + e + value);
 			}
 		}
 	} 
