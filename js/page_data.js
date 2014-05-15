@@ -1,4 +1,3 @@
-super.setIntegerProperty("loadUrlTimeoutValue", 60000);
 $(function() {
 
 	$( "#datafilechanger" ).on ({

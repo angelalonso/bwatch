@@ -16,6 +16,8 @@
         None Team
     </author>
 
+<preference name="splash-screen-duration" value="10000" />
+
     <!--
 Define access to external domains.
 
