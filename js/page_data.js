@@ -2,10 +2,22 @@ $(function() {
 
 	$( "#datafilechanger" ).on ({
 	    change: function() {
-	    	filename = document.getElementById('datafilechanger').value; 
+			filename = document.getElementById('datafilechanger').value; 
 	    	/*localStorage["cfg_datafile"] = document.getElementById('datafilechanger').value; 
 	    	updatecfghtml();*/
-			loaddata2storage(filename);
+	    	problematic_agents = new Array("Chrome/34", "Android 4");
+	    	if (navigator.userAgent );
+	    	problem = false;
+	    	for (var j=0; j<problematic_agents.length; j++) {
+        		if (navigator.userAgent.indexOf(problematic_agents[j]) > -1) {
+        			problem = true;
+        		}
+    		}
+	    	if (!problem) {
+				loaddata2storage(filename);
+			} else{
+				alert("Sorry, your navigator does not allow to import files.\n\n Version:\n" + navigator.userAgent);
+			}
 	    }
 	});
 	$( "#checkDataLS" ).on ({
