@@ -14,9 +14,12 @@ $(function() {
         		}
     		}
 	    	if (!problem) {
+	    		alert(filename.name);
 				loaddata2storage(filename);
 			} else{
-				alert("Sorry, your navigator does not allow to import files.\n\n Version:\n" + navigator.userAgent);
+				//alert("Sorry, your navigator does not allow to import files.\n\n Version:\n" + navigator.userAgent);
+				//http://stackoverflow.com/questions/19882331/html-file-input-in-android-webview-android-4-4-kitkat
+				loaddata2stoAUX();
 			}
 	    }
 	});

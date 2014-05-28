@@ -8,6 +8,7 @@
 <name>bwatch</name>
 <preference name="loadingDialog" value="Cargandooooo" />
 <preference name="loadUrlTimeoutValue" value="1000" />
+<gap:plugin name="io.github.pwlin.cordova.plugins.fileopener2" version="1.0.5" />
 <description>
 A simple PhoneGap Build application.
 </description>

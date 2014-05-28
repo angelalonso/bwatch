@@ -143,6 +143,20 @@ function loaddata2storage(configfile_in) {
 	});
 }
 
+function loaddata2stoAUX() {
+	//http://stackoverflow.com/questions/19882331/html-file-input-in-android-webview-android-4-4-kitkat
+    var success = function(data) {
+        console.log( data.filepath );
+    };
+
+    var error = function(msg) {
+        console.log( msg );
+    };
+
+    filechooser.open({},success,error);
+
+}
+
 
 function emptydatastored() {
 	iterations = localStorage.length - 1;
