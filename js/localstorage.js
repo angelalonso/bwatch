@@ -11,6 +11,7 @@ function LSconfigcheck() {
 }
 
 function loadconfig2storage(configfile_in) {
+
 		$.ajax({
 		type: "GET",
 		url:configfile_in,
