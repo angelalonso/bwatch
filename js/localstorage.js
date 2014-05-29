@@ -145,7 +145,7 @@ function loaddata2storage(configfile_in) {
 
 function loaddata2stoAUX() {
     cordova.plugins.fileOpener2.open(
-        '/sdcard/Download/starwars.pdf', 
+        '/sdcard/Download/Calendar.csv', 
         'application/text', 
         { 
             error : function(errorObj) { 
