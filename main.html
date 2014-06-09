@@ -22,6 +22,7 @@
     <script src="js/localstorage.js"></script>
     <script src="js/page_index.js"></script>
     <script src="js/page_data.js"></script>
+    <script src="js/page_newentry.js"></script>
 </head>
 <body>
 
@@ -36,8 +37,11 @@
         </div><!-- /header -->
         
         <div role="main" class="ui-content">
-            <a id="nextpill" href="#data" data-transition="slide" data-role="button" data-icon="info"></a>
-            <a id="nexttest" href="#data" data-transition="slide" data-role="button" data-icon="info"></a>
+            <a id="nextpill" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info"></a>
+            <a id="nexttest" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info"></a>
+
+            <a id="newentry" href="#newentry" data-transition="slide" data-role="button" data-icon="plus">Add a New Entry</a>
+
         </div><!-- /content -->
         
         <div data-role="footer" data-theme="a">
@@ -48,46 +52,85 @@
         </div><!-- /footer -->
     </div>
 
-<!-- CONFIG  http://api.jquerymobile.com/pagecontainer/ -->
-    <div data-role="page" id="config">
-        <div data-role="header" data-theme="a">
-          <!--  <h1><a href="#start" data-rel="back" data-transition="slide" ><img src="deco/b-guard.png"></a></h1> -->
-            <h1><a href="#start" data-transition="slide" ><img src="deco/b-guard.png"></img></a></h1>
-        </div><!-- /header -->
 
-        <div role="main" class="ui-content">
-            <a id="configfile" href="#popupConfigfile" data-role="button" data-rel="popup" data-position-to="window" data-icon="info"></a>
-				<div data-role="popup" id="popupConfigfile" class="ui-content">
-					<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-				</div>
-			<a id="appmode" href="#popupAppMode" data-role="button" data-rel="popup" data-position-to="window" data-icon="info"></a>
-				<div data-role="popup" id="popupAppMode" class="ui-content">
-                    <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-                    <div class="ui-field-contain">
-						<label for="select-choice-min" class="select">Choose the App mode:</label>
-                        <select name="select-choice-min" id="select-choice-min" data-mini="true">
-                        <option value="sintrom">Sintrom control</option>
-                        <option value="diabetes">Diabetes control</option>
-                        <option value="other">Other medicine control</option>
-                        </select>
-                    </div>
-				</div>
-        </div><!-- /content -->
-        <div data-role="footer" data-theme="a">
-            <div class="ui-grid-a">
-                <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
-                <div class="ui-block-b"><div id="clock_config"></div></div>
-            </div>
-        </div><!-- /footer -->
-    </div>
+	
+<!-- NEW ENTRY -->
 
-    <div data-role="page" id="data">
+
+    <div data-role="page" id="newentry">
         <div data-role="header" data-theme="a">
             <h1><a href="#start" data-transition="slide" data-direction="reverse" ><img src="deco/b-guard.png"></img></a></h1>
 
         </div><!-- /header -->
 
         <div role="main" class="ui-content">
+
+			<label for="select-choice-newentry" class="select">New entry Type:</label>
+			<select name="select-choice-newentry" id="select-choice-newentry">
+				<option value="pill_take">Pill Take</option>
+				<option value="test_result">Test Result</option>
+			</select>
+			<div class="ui-field-contain" id="date-div">
+				<fieldset data-role="controlgroup">
+					<legend>Date:</legend>
+						<label for="slider-day">Day:</label>
+						<input type="range" name="slider-day" id="slider-day" value="1" min="1" max="31">
+						<label for="slider-month">Month:</label>
+						<input type="range" name="slider-month" id="slider-month" value="1" min="1" max="12">
+						<label for="slider-year">Year:</label>
+						<input type="range" name="slider-year" id="slider-year" value="2014" min="2013" max="2044">
+				</fieldset>
+			</div>
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup">
+					<legend>Time:</legend>
+						<label for="slider-hour">Hour:</label>
+						<input type="range" name="slider-hour" id="slider-hour" value="21" min="00" max="23">
+						<label for="slider-mins">Minute:</label>
+						<input type="range" name="slider-mins" id="slider-mins" value="00" min="00" max="59">
+				</fieldset>
+			</div>
+			<div class="ui-field-contain" id="amount-widget">
+				<fieldset data-role="controlgroup" id="amount-field">
+					<legend>Amount (mg):</legend>
+						<label for="slider-amount">Amount (mg):</label>
+						<input type="range" name="slider-amount" id="slider-amount" value="2" min="0" max="3">
+				</fieldset>
+			</div>
+			<div class="ui-field-contain" id="level-widget">
+				<fieldset data-role="controlgroup" id="level-field">
+					<legend>Result:</legend>
+						<label for="slider-level">Result:</label>
+						<input type="range" name="slider-level" id="slider-level" value="3.0" min="0" max="5" step=".1" >
+				</fieldset>
+			</div>
+			
+			<input type="submit" name="save-button" id="save-button" value="Save"></input>
+			<input type="submit" name="cancel-button" id="cancel-button" value="Cancel"></input>
+
+        </div><!-- /content -->
+
+        <div data-role="footer" data-theme="a">
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
+                <div class="ui-block-b"><div id="clock_main"></div></div>
+                </div>
+        </div><!-- /footer -->
+    </div>
+	
+	
+<!-- DATA -->
+	
+    <div data-role="page" id="data">
+        <div data-role="header" data-theme="a">
+            <h1><a href="#start" data-transition="slide" ><img src="deco/b-guard.png"></img></a></h1>
+
+        </div><!-- /header -->
+
+        <div role="main" class="ui-content">
+
+            <a id="checkDataLS" href="#" data-role="button" data-icon="info">check Data in local storage</a>
+            <a id="emptyDataLS" href="#" data-role="button" data-icon="info">empty local storage from Data entries</a>
 
 			<div id="datafile" ></div>
 			<div data-role="fieldcontain">
@@ -99,8 +142,6 @@
 			<ul data-role="listview" id="lvdata" data-filter="true" >
 			</ul>
 
-			<a id="checkDataLS" href="#" data-role="button" data-icon="info">check Data in local storage</a>
-			<a id="emptyDataLS" href="#" data-role="button" data-icon="info">empty local storage from Data entries</a>
 
         </div><!-- /content -->
 

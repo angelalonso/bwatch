@@ -1,4 +1,11 @@
 $(function() {
+	$("#start").on("swipeleft", function(e){
+        $.mobile.changePage("#data", {transition: "slide"});
+    });
+        
+    $("#data").on("swiperight", function(e){
+        $.mobile.changePage("#start", {transition: "slide", reverse: true});
+    }); 
 
 	$( "#datafilechanger" ).on ({
 	    change: function() {
@@ -14,12 +21,12 @@ $(function() {
         		}
     		}
 	    	if (!problem) {
-	    		alert(filename.name);
+	    		alert(filename);
 				loaddata2storage(filename);
 			} else{
 				alert("Sorry, your navigator does not allow to import files.\n\n Version:\n" + navigator.userAgent);
 				//http://stackoverflow.com/questions/19882331/html-file-input-in-android-webview-android-4-4-kitkat
-				loaddata2stoAUX();
+				loaddata2stoAUX(filename);
 			}
 	    }
 	});

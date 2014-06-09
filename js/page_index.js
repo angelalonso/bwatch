@@ -3,10 +3,10 @@ $(function() {
     load_start();
 
     $("#start").on("swiperight", function(e){
-        $.mobile.changePage("#config", {transition: "slide", reverse: true});
+        $.mobile.changePage("#data", {transition: "slide", reverse: true});
     });
         
-    $("#config").on("swipeleft", function(e){
+    $("#data").on("swipeleft", function(e){
         $.mobile.changePage("#start", {transition: "slide"});
     }); 
 
@@ -14,7 +14,7 @@ $(function() {
         load_start();
     }); 
 
-    $("#config").bind('pagebeforeshow',function(e){
+    $("#data").bind('pagebeforeshow',function(e){
         load_start();
     }); 
  
@@ -25,7 +25,6 @@ function load_start(){
     var todayGUI = DateToGUI(aux);
     var todayCSV = DateToCALdate(aux);
     document.getElementById('clock_main').innerHTML = todayGUI;
-    document.getElementById('clock_config').innerHTML = todayGUI;
     try { 
 		document.getElementById('nextpill').innerHTML = "Today: " + jQuery.parseJSON(LSsearchincol("Start Date", todayCSV)[0])["Description"]; 
 	} catch(e) {

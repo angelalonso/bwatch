@@ -143,7 +143,17 @@ function loaddata2storage(configfile_in) {
 	});
 }
 
-function loaddata2stoAUX() {
+function newEntry2storage(new_entry_in) {
+	i = localStorage.length;
+	localStorage["data_" + (i - 1)] = new_entry_in;
+	updatedatahtml();
+}
+
+function loaddata2stoAUX(configfile_in) {
+	new_file = configfile_in.split('C:\\fakepath\\')[1];
+	alert("testing: " + new_file);
+	loaddata2storage(new_file);
+/*
     cordova.plugins.fileOpener2.open(
         '/sdcard/Download/Calendar.csv', 
         'application/text', 
@@ -157,6 +167,7 @@ function loaddata2stoAUX() {
             }
         }
     );
+*/
 }
 
 
