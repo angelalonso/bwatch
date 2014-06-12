@@ -2,13 +2,6 @@ $(function() {
 
     load_start();
 
-    $("#start").on("swiperight", function(e){
-        $.mobile.changePage("#data", {transition: "slide", reverse: true});
-    });
-        
-    $("#data").on("swipeleft", function(e){
-        $.mobile.changePage("#start", {transition: "slide"});
-    }); 
 
     $("#start").bind('pagebeforeshow',function(e){
         load_start();

@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
     <link rel="stylesheet" href="css/themes/bwatch.extension.css" />
+  
 
     <script src="js/jquery/jquery-1.10.2.min.js"></script>
     <script src="js/jquery/jquery.mobile.subpage.js"></script>
     <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
 
 	<script src="js/external/jquery.tinysort.min.js"></script>
-
-    <script src="js/filechooser.js"></script> 
+    <script src="js/jquery/jQuery.ui.datepicker.js"></script>
+    <script src="js/jquery/jquery.ui.datepicker.mobile.js"></script>
 	
     <script src="js/formatter.js"></script>
     <script src="js/localstorage.js"></script>
@@ -29,25 +30,41 @@
 
 <!-- MAIN -->
 
-    <div data-role="page" id="start">
+    <div data-role="page" id="start" data-theme="a">
         <div data-role="header" data-theme="a">
             <h1><img src="deco/b-guard.png"></img></h1>
             <a href="#config" data-icon="gear" data-transition="slide" data-direction="reverse" class="ui-btn-left" id="config_btn" >Config</a>
 
         </div><!-- /header -->
         
+		<div data-role="collapsible" data-collapsed="false" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a">
+			<h3>TODAY</h3>
+			<p><a id="nextpill" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info" data-theme="a"></a></p>
+            <p><a id="nexttest" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info" data-theme="a"></a></p>
+		</div>
+		
+		<div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a">
+			<h3>THIS WEEK</h3>
+			<p><a id="nextpill" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info" ></a></p>
+            <p><a id="nexttest" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info" ></a></p>
+		</div>
+		
+		<div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-theme="a">
+			<h3>SOON...</h3>
+			<p data-theme="a">There's nothing here yet, maybe want to add something?</p>
+		</div>
+		
         <div role="main" class="ui-content">
-            <a id="nextpill" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info"></a>
-            <a id="nexttest" href="#data" data-transition="slide" data-direction="reverse" data-role="button" data-icon="info"></a>
 
             <a id="newentry" href="#newentry" data-transition="slide" data-role="button" data-icon="plus">Add a New Entry</a>
 
         </div><!-- /content -->
         
         <div data-role="footer" data-theme="a">
-            <div class="ui-grid-a">
-                <div class="ui-block-a"><a id="creative_commons" href="https://creativecommons.org/" data-role="button" data-icon="tag" >This Site supports Creative Commons</a></div>
-                <div class="ui-block-b"><div id="clock_main"></div></div>
+            <div class="ui-grid-c">
+                <div class="ui-block-a"></div>
+				<div class="ui-block-b"><a id="newentry" href="#newentry" data-transition="slide" data-role="button" data-icon="plus">Add a New Entry</a></div>
+                <div class="ui-block-c"><div id="clock_main"></div></div>
             </div>
         </div><!-- /footer -->
     </div>
@@ -132,6 +149,12 @@
             <a id="checkDataLS" href="#" data-role="button" data-icon="info">check Data in local storage</a>
             <a id="emptyDataLS" href="#" data-role="button" data-icon="info">empty local storage from Data entries</a>
 
+            <a id="newEntryLS" href="#popupEntry" data-role="button" data-icon="info" data-rel="popup" data-transition="flip">Add a NEW ENTRY</a>
+
+            <a id="editEntryLS" href="#" data-role="button" data-icon="info">Edit a Generic Entry to local storage</a>
+            <a id="deleteEntryLS" href="#" data-role="button" data-icon="info">Delete a Generic Entry to local storage</a>
+            <a id="findEntryLS" href="#" data-role="button" data-icon="info">Find a Generic Entry to local storage</a>
+
 			<div id="datafile" ></div>
 			<div data-role="fieldcontain">
 				<label for="name">Import file: </label>	
@@ -151,7 +174,59 @@
                 <div class="ui-block-b"><div id="clock_main"></div></div>
                 </div>
         </div><!-- /footer -->
+
+    <!-- ENTRY POPUPS for this page-->
+        <!-- NEW ENTRY -->
+        
+        <div data-role="popup" class="ui-content" id="popupEntry" data-theme="a" data-overlay-theme="b" data-position-to="window" >
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <label for="popup-entry-type" textalign="center" id="popup-entry-title" style="margin:0 auto; margin-left:auto; margin-right:auto; align:center; text-align:center;"></label>
+            <select name="popup-entry-type" id="popup-entry-type"  data-theme="a">
+                <option value="pill_take">Pill Take</option>
+                <option value="test_result">Test Result</option>
+            </select>
+            <label for="popup-entry-date">Date (day/month/year):</label>
+            <div id="popup-entry-date" class="ui-grid-c" >
+                <div class="ui-block-a"><input type="number" name="popup-entry-day" id="popup-entry-day" min="01" max="31" data-theme="a"></div>
+                <div class="ui-block-b" id="popup-entry-month-div"><select name="popup-entry-month" id="popup-entry-month" data-theme="a" ></select></div>
+                <div class="ui-block-c"><input type="number"  name="popup-entry-year" id="popup-entry-year" min="1" data-theme="a" ></div>
+            </div>
+
+            <label for="popup-time">Time (hour/minutes):</label>
+            <div id="popup-time" class="ui-grid-b">
+                <div class="ui-block-a"><input type="number"  name="popup-entry-hour" id="popup-entry-hour" min="00" max="23" data-theme="a"></div>
+                <div class="ui-block-b"><input type="number"  name="popup-entry-mins" id="popup-entry-mins" min="00" max="59" data-theme="a"></div>
+            </div>
+
+            <div class="ui-field-contain" id="popup-amount">
+                <label for="popup-amount-field">Amount (mg):</label>
+                <fieldset data-role="controlgroup" id="popup-amount-field">
+                        <input type="range" name="popup-slider-amount" id="popup-slider-amount" value="2" min="0" max="3">
+                </fieldset>
+            </div>
+            
+            <div class="ui-field-contain" id="popup-level">
+                <label for="popup-level-field">Result:</label>
+                <fieldset data-role="controlgroup" id="popup-level-field">
+                        <input type="range" name="popup-slider-level" id="popup-slider-level" value="3.0" min="0" max="5" step=".1" >
+                </fieldset>
+            </div>
+
+            <div class="ui-grid-a" id="popup-buttons">
+                <div class="ui-block-a"><a id="popup-button-cancel" href="#" data-role="button" data-icon="delete" >Cancel</a></div>
+                <div class="ui-block-b"><a id="popup-button-save" href="#" data-role="button" data-icon="check" >Save</a></div>
+            </div>
+        </div>
+
+
+
+
     </div>
+
+
+
+
+
 
 </body>
 </html>

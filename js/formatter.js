@@ -38,6 +38,9 @@ function DateToArraydate(dateday){
     var dd = dateday.getDate();
     var mm = dateday.getMonth()+1; //January is 0!
     var yyyy = dateday.getFullYear();
+    var HH = dateday.getHours();
+    var MM = dateday.getMinutes();
+    var SS = dateday.getSeconds();
 
     if(dd<10) {
         dd='0'+dd
@@ -47,10 +50,10 @@ function DateToArraydate(dateday){
         mm='0'+mm
     } 
 
-    dayformatted = dd+'/'+mm+'/'+yyyy;
+    dayformatted = dd+'/'+mm+'/'+yyyy+'/'+HH+'/'+MM+'/'+SS;
 	var day_array = dayformatted.split('/');
-    return day_array;
 
+    return day_array;
 }
 
 // Date function to "beautify" CSV-Stored date
