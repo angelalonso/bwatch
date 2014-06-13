@@ -7,7 +7,6 @@ function LSAddEntry(entry_in){
 // Substitute newEntry2storage
 	i = localStorage.length;
 	localStorage["data_" + i] = entry_in;
-	updatedatahtml();
 
 }
 
@@ -119,46 +118,6 @@ function datasearchcolumn(column){
 /* Local Storage Functions - END */
 
 
-/* Local Storage POPUP - START */
-
-function LSPopup(div_id, title,popup_type){
-	var month_names_en_short = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	var month_names_es_short = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-    var todayArray = DateToArraydate(new Date());
-
-    $("#popup-entry-title").html(popup_type).init();
-
-    document.getElementById('popup-entry-day').value = todayArray[0];
-    data_month = "";
-
-    for (month=1;month<=12;month++) {
-    	month_tag = month_names_en_short[month -1];
-    	data_month = data_month + '<option value="' + month + '">' + month_tag+ '</option>';
-    }
-    $("#popup-entry-month").html(data_month).init();
-    $('#popup-entry-month').prop('selectedIndex', parseInt(todayArray[1]) - 1).selectmenu('refresh').change();
-    document.getElementById('popup-entry-year').value = todayArray[2];
-    document.getElementById('popup-entry-hour').value = todayArray[3];
-    document.getElementById('popup-entry-mins').value = todayArray[4];
-
-    entry_type = document.getElementById('popup-entry-type').value;
-
-    if (entry_type == 'pill_take'){
-    	$( "#popup-amount" ).show();
-        $( "#popup-level" ).hide();
-        document.getElementById('popup-entry-hour').value = 21;
-		document.getElementById('popup-entry-mins').value = 00;
-    } else {
-    	$( "#popup-amount" ).hide();
-        $( "#popup-level" ).show();
-        document.getElementById('popup-entry-hour').value = 11;
-		document.getElementById('popup-entry-mins').value = 15;
-    }
-}
-
-
-
-/* Local Storage POPUP - END */
 
 // http://24ways.org/2010/html5-local-storage/
 // CONFIG ENTRIES
@@ -294,13 +253,11 @@ function loaddata2storage(configfile_in) {
 				rowline = rowline + "} ";
 				localStorage["data_" + (i - 1)] = rowline;
 			}
-		updatedatahtml();
 		},
 		error: function()
 		{
 			//file not exists
-			alert(configfile + " does not exist");
-			updatedatahtml();	
+			alert(configfile_in + " does not exist");
 		}
 	});
 }
@@ -310,7 +267,6 @@ function loaddata2storage(configfile_in) {
 function newEntry2storage(new_entry_in) {
 	i = localStorage.length;
 	localStorage["data_" + (i)] = new_entry_in;
-	updatedatahtml();
 }
 
 function loaddata2stoAUX(configfile_in) {
@@ -333,7 +289,6 @@ function emptydatastored() {
 	for (i=0; i<=keys2delete.length;i++){
 		localStorage.removeItem(keys2delete[i]);
 	}
-	updatedatahtml();
 }
 
 

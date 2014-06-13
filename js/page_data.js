@@ -1,7 +1,12 @@
 $(function() {
 
-/*	Swipes	*/
+    /* update triggers */
 
+	reload_data_html();
+
+	$("#data").bind('pagebeforeshow',function(e){
+		reload_data_html();
+	}); 
 
 
 /* Popup elements */
@@ -33,6 +38,7 @@ $(function() {
 			// key is data_nr (data_4)
 			// value is "{"Subject": "Sintrom Test", "Start Date": "05/14/12", "Start Time": "11:15:00 AM", "End Date": "05/14/12", "End Time": "12:00:00 AM", "All Day Event": "False", "Description": "Blood Level: 3.5", "Location": "", "Private": "False"} "
 			newEntry2storage(result);
+			reload_data_html();
         }
     }); 
 
@@ -41,7 +47,7 @@ $(function() {
 	$( "#lvdata" ).on('click', 'li', function () {
 		entry_key = "data_" + $(this).text().split(" ")[0];
 	    LSDeleteEntrywKey(entry_key);
-	    updatedatahtml();
+	    reload_data_html();
 	});
 
 
@@ -66,6 +72,7 @@ $(function() {
 				//http://stackoverflow.com/questions/19882331/html-file-input-in-android-webview-android-4-4-kitkat
 				loaddata2stoAUX(filename);
 			}
+			reload_data_html();
 	    }
 	});
 
@@ -79,6 +86,7 @@ $(function() {
 	    click: function() {
 	    	emptydatastored();
 	    	localStorage.clear();
+	    	reload_data_html();
 	    }
 	});
 	$( "#saveDataLS2File" ).on ({
@@ -99,21 +107,21 @@ $(function() {
 	$( "#addEntryLS" ).on ({
 	    click: function() {
 	    	LSAddEntry('{"Subject": "Sintrom Test", "Start Date": "05/14/12", "Start Time": "11:15:00 AM", "End Date": "05/14/12", "End Time": "12:00:00 AM", "All Day Event": "False", "Description": "Blood Level: 3.5", "Location": "", "Private": "False"} ');
-	    	updatedatahtml();
+	    	reload_data_html();
 	    }
 	});
 
 	$( "#editEntryLS" ).on ({
 	    click: function() {
 	    	LSEditEntry();
-	    	updatedatahtml();
+	    	reload_data_html();
 	    }
 	});
 
 	$( "#deleteEntryLS" ).on ({
 	    click: function() {
 	    	LSDeleteEntry(LSFindEntryInField("06/14/15","Start Date"));
-	    	updatedatahtml();
+	    	reload_data_html();
 	    }
 	});
 
@@ -127,7 +135,7 @@ $(function() {
 
 
     $("#data").bind('pagebeforeshow',function(e){
-        updatedatahtml();
+        reload_data_html();
     });
 
 
@@ -135,7 +143,7 @@ $(function() {
 
 
 /* Site update*/
-function updatedatahtml() {
+function reload_data_html() {
 	data_in = ""
 	for ( i = 0 ; i <= localStorage.length - 1 ; i++ ){
 		var key = localStorage.key(i);
@@ -146,7 +154,7 @@ function updatedatahtml() {
 				value_nr = key.split("_")[1];
 				data_in = data_in + "<li><a data-role='button' data-theme='a' >" + value_nr + " " + DateCALtoListview(result["Start Date"]) + " - " + result["Description"] + "</a></li>";
 			} catch(e) {
-				alert("updatedatahtml" + e + value);
+				alert("reload_data_html" + e + value);
 			}
 		}
 	} 

@@ -1,19 +1,30 @@
 $(function() {
 
-    load_start();
+    /* update triggers */
 
+    reload_main_html();
 
     $("#start").bind('pagebeforeshow',function(e){
-        load_start();
+        reload_main_html();
     }); 
 
-    $("#data").bind('pagebeforeshow',function(e){
-        load_start();
+    $( "#MainNewEntry" ).on ({
+        click: function() {
+            LSPopup("#popupTest", "New Entry", "NEW ENTRY");
+        }
     }); 
- 
+
+    $("#MainDeleteAll" ).on ({
+        click: function() {
+            emptydatastored();
+            localStorage.clear();
+            reload_main_html();
+        }
+    });
+
 });
 
-function load_start(){
+function reload_main_html(){
     var aux = new Date();
     var todayGUI = DateToGUI(aux);
     var todayCSV = DateToCALdate(aux);
